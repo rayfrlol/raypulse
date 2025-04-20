@@ -1,0 +1,95 @@
+local a=game:GetService("\85\115\101\114\73\110\112\117\116\83\101\114\118\105\99\101")
+local b=game:GetService("\80\108\97\121\101\114\115")
+local c=b.LocalPlayer
+local d=false
+local e={}
+local f=Instance.new("\83\99\114\101\101\110\71\117\105")
+f.ResetOnSpawn=false
+f.Name=tostring(math.random(10000,99999))
+f.Parent=c:WaitForChild("\80\108\97\121\101\114\71\117\105")
+local g=Instance.new("\70\114\97\109\101")
+g.BackgroundColor3=Color3.fromRGB(0,0,0)
+g.Size=UDim2.new(1,0,1,0)
+g.BorderSizePixel=0
+g.Name="\66\108\97\99\107\66\71"
+g.Parent=f
+local h=Instance.new("\84\101\120\116\76\97\98\101\108")
+h.Size=UDim2.new(1,0,0.1,0)
+h.Position=UDim2.new(0,0,0.45,0)
+h.Text="\77\97\100\101\32\98\121\32\82\97\121\10\68\105\115\99\111\114\100\32\58\32\108\117\99\105\100\57\50\48\48\51"
+h.BackgroundTransparency=1
+h.TextColor3=Color3.fromRGB(255,255,255)
+h.TextScaled=true
+h.Font=Enum.Font.SourceSansBold
+h.Parent=g
+wait(5)
+f:Destroy()
+d=true
+local function i(j,k,l)
+    local m=Instance.new("\83\99\114\101\101\110\71\117\105")
+    m.ResetOnSpawn=false
+    m.Name=tostring(math.random(100000,999999))
+    m.Parent=c:WaitForChild("\80\108\97\121\101\114\71\117\105")
+    local n=Instance.new("\70\114\97\109\101")
+    n.Size=UDim2.new(0,300,0,50)
+    n.Position=UDim2.new(0.5,l,0.5,-25)
+    n.AnchorPoint=Vector2.new(0.5,0.5)
+    n.BackgroundColor3=Color3.fromRGB(30,30,30)
+    n.BorderSizePixel=0
+    n.Active=true
+    n.Draggable=true
+    n.Visible=true
+    n.Name="\85\73\70\114\97\109\101"
+    n.Parent=m
+    local o=Instance.new("\84\101\120\116\66\111\120")
+    o.Size=UDim2.new(0.7,-10,1,-10)
+    o.Position=UDim2.new(0,5,0,5)
+    o.PlaceholderText=k
+    o.BackgroundColor3=Color3.fromRGB(45,45,45)
+    o.TextColor3=Color3.fromRGB(255,255,255)
+    o.BorderSizePixel=0
+    o.Text=""
+    o.ClearTextOnFocus=false
+    o.Font=Enum.Font.SourceSans
+    o.TextSize=14
+    o.Name="\73\110\112\117\116"
+    o.Parent=n
+    local p=Instance.new("\84\101\120\116\66\117\116\116\111\110")
+    p.Size=UDim2.new(0.3,-10,1,-10)
+    p.Position=UDim2.new(0.7,5,0,5)
+    p.Text="\69\110\116\101\114"
+    p.BackgroundColor3=Color3.fromRGB(60,60,255)
+    p.TextColor3=Color3.fromRGB(255,255,255)
+    p.BorderSizePixel=0
+    p.Font=Enum.Font.SourceSans
+    p.TextSize=14
+    p.Name="\69\110\116\101\114"
+    p.Parent=n
+    p.MouseButton1Click:Connect(function()
+        local q=o.Text
+        if q~=""then
+            local r=c:FindFirstChild("\80\108\97\121\101\114\83\116\97\116\115")
+            if r then
+                local s=r:FindFirstChild(j)
+                if s then
+                    s.Value=q
+                end
+            end
+            o.Text=""
+        end
+    end)
+    table.insert(e,n)
+end
+i("\83\116\121\108\101","\69\110\116\101\114\32\83\116\121\108\101\46\46\46",-160)
+i("\70\108\111\119","\69\110\116\101\114\32\70\108\111\119\46\46\46",160)
+for _,v in pairs(e)do
+    v.Visible=d
+end
+a.InputBegan:Connect(function(t,u)
+    if not u and t.KeyCode==Enum.KeyCode.RightControl then
+        d=not d
+        for _,v in pairs(e)do
+            v.Visible=d
+        end
+    end
+end)
